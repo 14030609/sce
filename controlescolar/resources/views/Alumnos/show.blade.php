@@ -39,39 +39,49 @@
             <br>
            
             {!! Form::close() !!}
-            <table class="table table-condensed table-striped table-bordered">
-                <thead>
-                <tr>
-                    <th>nombre</th>
-                    <th>nua</th>
-                    <th>email</th>
-                    <th>especialidad</th>
-                    <th>telefono</th>
-                 
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($alumnos as $payment)
-                    <tr>
 
-                        <td>{{ $payment->nombre }}</td>
-                        <td>{{ $payment->nua }}</td>
-                        <td>{{ $payment->email }}</td>
-                        <td>{{ $payment->cveesp }}</td>
-                        <td>{{ $payment->telefono }}</td>
-                     
-                     
+                <div class="panel panel-info">
+                    <div class="panel-heading">Alumnos</div>
+                    <div class="panel-body">
+                        <table class="table table-condensed table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>nombre</th>
+                                <th>nua</th>
+                                <th>email</th>
+                                <th>especialidad</th>
+                                <th>telefono</th>
 
-                        <td>
-                            <a href="{{ route('Alumnos.edit',['email' => $payment->email]) }}" class="btn btn-outline-primary">Editar</a>
-                             <a class="btn btn-outline-danger btn-xs" href="{{ route('/Usuarios/delete',['email' => $payment->email])}}" >Eliminar</a>
-                             <a class="btn btn-outline-danger btn-xs" href="{{ route('/Alumnos/cargaMaterias',['nua' => $payment->nua])}}" >Inscribir talller</a>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($alumnos as $payment)
+                            <tr>
 
-                        </td>   
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
+                                <td>{{ $payment->nombre }}</td>
+                                <td>{{ $payment->nua }}</td>
+                                <td>{{ $payment->email }}</td>
+                                <td>{{ $payment->cveesp }}</td>
+                                <td>{{ $payment->telefono }}</td>
+
+
+
+                                <td>
+                                    <a href="{{ route('Alumnos.edit',['email' => $payment->email]) }}" class="btn btn-outline-primary">Editar</a>
+                                    <a class="btn btn-outline-danger btn-xs" href="{{ route('/Usuarios/delete',['email' => $payment->email])}}" >Eliminar</a>
+                                    <a class="btn btn-outline-danger btn-xs" href="{{ route('/Alumnos/cargaMaterias',['nua' => $payment->nua])}}" >Inscribir talller</a>
+
+                                </td>
+                            </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>

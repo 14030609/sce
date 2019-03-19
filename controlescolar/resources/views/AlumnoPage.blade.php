@@ -232,11 +232,7 @@
     </div>
 <br>
 
-    <div class="panel panel-info">
-      <div class="panel-heading">Panel with panel-info class</div>
-      <div class="panel-body">Panel Content</div>
-    </div>
-<br>
+x<br>
     <div class="panel panel-warning">
       <div class="panel-heading">Panel with panel-info class</div>
       <div class="panel-body">Panel Content</div>

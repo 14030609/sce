@@ -38,7 +38,7 @@ class AlumnosController extends Controller
         return redirect('/Usuarios');
     }
 
-    public function installer(Request $request)
+    public function show(Request $request)
     {
         print_r('hola');
         print_r($request->nua);
@@ -98,21 +98,27 @@ print_r($request->lugar);
             $nua =$request->nua;
                 $payment =DB::table('talleres')->get();
 
-     return view('Alumnos.cargaMaterias', compact('payment','nua'));
+
+
+
+        $json = json_decode($payment,true);
+
+
+     return view('Alumnos.cargaMaterias', compact('json','nua'));
     
     }
 
 
 
-    public function show()
+/*    public function show()
 
     {
 
-     return view('Alumnos.index');
+  //   return view('Alumnos.index');
 
     }
 
-
+*/
 
 
     public function serviceWeb()

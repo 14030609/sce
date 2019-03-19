@@ -11,6 +11,9 @@
 |
 */
 
+
+use App\Materias;
+
 Route::get('/', function () {
     return view('plantilla');
 });
@@ -36,7 +39,7 @@ Route::get('/admision', function () {
 Route::get('/search','UsuariosController@search');
 
 Route::get('/login', function () {
-    return view('login');
+    return view('/Login/login');
 });
 Route::get('/contact', function () {
     return view('contact');
@@ -54,6 +57,66 @@ Route::post('/Usuarios/search', ['as' => '/Usuarios/search', 'uses'=>'UsuariosCo
 Route::get('/Usuarios/delete/{email}', ['as' => '/Usuarios/delete', 'uses'=>'UsuariosController@delete']);
 Route::get('/Usuarios/edit', ['as' => '/Usuarios/edit', 'uses'=>'UsuariosController@edit']);
 
+Route::get ( '/materias', function () {
+    //$data = Data::all ();
+
+    $data=DB::select("select * from materias");
+
+    return view ( 'materias' )->withData ( $data );
+} );
+
+Route::post ( '/editItem', function (Request $request) {
+	
+	$rules = array (
+			'nombre' => 'required|alpha',
+			'creditos' => 'required|alpha',
+			'horasprofesor' => 'required|email',
+			'horasautonomo' => 'required',
+			'semestre' => 'required|regex:/^[\pL\s\-]+$/u'
+	);
+	$validator = Validator::make ( Input::all (), $rules );
+	if ($validator->fails ())
+		return Response::json ( array (
+				
+				'errors' => $validator->getMessageBag ()->toArray () 
+		) );
+	else {
+		
+/*		$data = Materias::find ( $request->cvemat );
+		$data->nombre = ($request->nombre);
+		$data->creditos = ($request->creditos);
+		$data->horasprofesor = ($request->horasprofesor);
+		$data->horasautonomo = ($request->horasautonomo);
+		$data->semestre = ($request->semestre);
+
+*/
+        $data = Materias::where('cvemat',$request->cvemat)->update(
+            ['nombre'=>$request->nombre,
+                'horasprofesor'=>$request->horasprofesor,
+                'horasautonomo'=>$request->horasautonomo,
+                'semestre'=>$request->semestre]);
+
+
+$data->save ();
+		return response ()->json ( $data );
+	}
+} );
+
+
+
+Route::post ( '/deleteItem', function (Request $request) {
+   Materias::find ( $request->cvemat)->delete ();
+
+  //  $metodo =Materias::where('cvemat',$request->cvemat);
+    //$metodo->delete();
+    return response ()->json ();
+
+
+} );
+
+
+
+
 
 Route::resource('Maestros','MaestrosController') ;
 Route::post('/Maestros/search', ['as' => '/Maestros/search', 'uses'=>'MaestrosController@search']);
@@ -69,7 +132,7 @@ Route::get('/Alumnos/edit', ['as' => '/Alumnos/edit', 'uses'=>'AlumnosController
 Route::get('/Alumnos/cargaMaterias/{nua}', ['as' => '/Alumnos/cargaMaterias', 'uses'=>'AlumnosController@cargaMaterias']);
 
 //Route::post('/Alumnos/installer', ['as' => '/Alumnos/installer', 'uses'=>'AlumnosController@installer']);
-Route::post('/Alumnos/installer', ['as' => 'Alumnos.installer', 'uses'=>'AlumnosController@installer']);
+Route::get('/Alumnos/installer', ['as' => 'Alumnos.installer', 'uses'=>'AlumnosController@installer']);
 
 
 
@@ -77,6 +140,16 @@ Route::resource('Materias','MateriasController') ;
 Route::post('/Materias/search', ['as' => '/Materias/search', 'uses'=>'MateriasController@search']);
 Route::get('/Materias/delete/{email}', ['as' => '/Materias/delete', 'uses'=>'MateriasController@delete']);
 Route::get('/Materias/edit', ['as' => '/Materias/edit', 'uses'=>'MateriasController@edit']);
+
+
+Route::get ( '/welcome2', function () {
+    //$data = Data::all ();
+
+    $data=DB::select("select cvemat, nombre from materias");
+
+    return view ( 'welcome2' )->withData ( $data );
+} );
+
 
 Route::resource('Grupos','GruposController') ;
 Route::post('/Grupos/search', ['as' => '/Grupos/search', 'uses'=>'GruposController@search']);

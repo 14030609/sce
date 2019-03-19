@@ -18,7 +18,7 @@
                 <!-- Button for smallest screens -->
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
                 <a class="navbar-brand" href="index.html">
-                <img  width="60" height="70" src="assets/images/plan.jpeg"</a>
+                <img  width="60" height="70" src="assets/images/plan    .jpeg"</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav pull-right mainNav">

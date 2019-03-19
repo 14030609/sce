@@ -22,7 +22,7 @@
 					</span>
 				</div>
 
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" method="post" >
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
 						<span class="label-input100">Username</span>
 						<input class="input100" type="text" name="username" placeholder="Enter username">
@@ -50,8 +50,8 @@
 						</div>
 					</div>
 
-					<div class="container-login100-form-btn"> 
-						<button type ="button" href="admin"> Login</button> 
+					<div class="container-login100-form-btn">
+                        <input type="submit" class="btn btn-primary" href="{{ route('Alumnos.index') }}" name="enviar" value="login">
 
 					</div>
 				</form>

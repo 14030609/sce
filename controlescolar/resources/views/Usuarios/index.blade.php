@@ -1,6 +1,14 @@
-@extends('welcome')
-@section('add')
-    <div class="container">
+<html>
+<head>
+    @extends('welcome')
+
+    <title>Lista de Usuarios </title>
+
+</head>
+
+<body>
+@section('list')
+<div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 {!! Form::open(['route' => 'Usuarios.store', 'method' => 'post', 'novalidate']) !!}
@@ -27,4 +35,6 @@
             </div>
         </div>
     </div>
+</body>
+</html>
 @stop
